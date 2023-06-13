@@ -1,0 +1,85 @@
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+int main(){
+    float num1, num2,result;
+    char op;
+    string reset;
+
+while (true){
+
+    cout<<"Enter your first number: ";
+    cin>>num1;
+    cout<<"Enter your operator: ";
+    cin>>op;
+    cout<<"Enter your second number: ";
+    cin>>num2;
+
+
+    switch(op){
+        
+        case '+':
+            result = num1+num2;
+            cout<<num1<<" + "<<num2<<" : "<<result<<endl;
+            break;
+			 
+            
+
+        case '-':
+        result = num1-num2;
+        cout<<num1<<" - "<<num2<<" : "<<result<<endl;
+        break;
+		   
+        
+
+        case '*':
+        result = num1*num2;
+        cout<<num1<<" * "<<num2<<" : "<<result<<endl;
+        break;
+		   
+        
+
+        case '/':
+        try{
+
+              if(num2 == 0){
+                throw "You cannot divide by zero.\n";
+              }
+              else{
+                result = num1/num2;
+                cout<<num1<<" / "<<num2<<" : "<<result<<endl;
+                break;
+                
+                  
+             }
+        }
+        catch (const char * error){
+                cout<<"Error occured: "<<error<<endl;
+        }
+
+        default:
+                cout<<"Invalid Operator!!"<<endl;
+
+
+    }
+      while(true){
+      cout<<"Would you like to continue(yes/no)? "<<endl;
+      cin>>reset;
+      transform(reset.begin(), reset.end(), reset.begin(), ::tolower);
+
+      if (reset == "no" || reset == "n") {
+            cout << "Exiting program!!" << endl;
+            exit(0);
+        }
+        else if (reset != "yes" && reset != "y") {
+            cout << "Invalid option!" << endl;
+        }
+        else {
+            break;
+        }
+      }
+  }
+  return 0;   
+}
