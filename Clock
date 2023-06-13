@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<windows.h>
+
+int main(){
+	int h,m,s,h1,m1,s1;
+	int d=1000;
+	char ans;
+	bool valid = true;
+	
+	while(valid){
+		printf("\nSet time(HH/MM/SS) :  \n");
+		scanf("%d%d%d",&h,&m,&s);
+		if(h>23 || h<0 || m>60 || m<0 || s>60 || s<0)
+		{
+			printf("ERROR!!! INVALID INPUT, TRY AGAIN.");		
+		}
+		else	valid = false;
+		}
+	
+    printf("Do you want to set an alarm? Press Y for Yes and N for No.\n");
+	scanf(" %c",&ans);
+	if(ans == 'y'|| ans == 'Y')
+	{
+		printf("Enter the Alarm Time(HH/MM/SS): ");
+		scanf("%d%d%d",&h1,&m1,&s1);
+	}
+	 else if(ans=='n'||ans=='N');
+	{
+		printf("OK!");
+    }
+    
+	while(1)
+	{
+		s++;
+		if(s>59){
+			m++;
+			s=0;
+		}
+		if(m>59){
+			h++;
+			m=0;
+		}
+		if(h>23){
+			h=0;
+		}
+	
+		printf("\nClock : ");
+		printf("\n%02d:%02d:%02d",h,m,s);
+		
+		if(h==h1 &&m==m1&& s==s1){
+			Beep(750,1000);
+			s += 1;
+		}
+		
+		Sleep(d);
+		system("cls");
+	}
+	
+ return 0;
+ }
