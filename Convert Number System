@@ -1,0 +1,282 @@
+#include<iostream>
+#include<math.h>
+#include<string.h>
+
+using namespace std;
+
+long int convertbtod(long int n){
+	long int dec = 0, i = 0, rem;
+
+  while (n!=0) {
+    rem = n % 10;
+    n /= 10;
+    dec += rem * pow(2, i);
+    ++i;
+}
+ cout<<dec;
+}
+
+long int convertbtoh(long int n){
+	int hex=0, mul=1, chk=1, rem, i=0;
+	char hexDecNum[1000];
+ while(n!=0)
+    {
+        rem = n%10;
+        hex = hex + (rem*mul);
+        if(chk%4==0)
+        {
+            if(hex<10)
+                hexDecNum[i] = hex+48;
+            else
+                hexDecNum[i] = hex+55;
+            mul = 1;
+            hex = 0;
+            chk = 1;
+            i++;
+        }
+        else
+        {
+            mul = mul*2;
+            chk++;
+        }
+        n = n/10;
+    }
+    if(chk!=1)
+        hexDecNum[i] = hex+48;
+    if(chk==1)
+        i--;
+  
+    for(i=i; i>=0; i--)
+        cout<<hexDecNum[i];
+
+}
+
+long int convertdtob(long int n){
+    int binaryNum[32];
+    int i = 0;
+  
+    while (n > 0) {
+       binaryNum[i] = n % 2;
+        n = n / 2;
+        i++;
+    }
+ 
+    for (int j = i - 1; j >= 0; j--)
+        cout << binaryNum[j];
+}
+
+
+long int convertdtoh(long int n){
+	long int rem;
+	int j = 0,i;
+	char hex[1000];
+	 while (n != 0)
+    {
+        rem = n % 16;
+        if (rem < 10)
+            hex[j++] = 48 + rem;
+        else
+            hex[j++] = 55 + rem;
+        n = n / 16;
+    }
+      for (i = j; i >= 0; i--)
+            cout<<hex[i];
+}
+
+long int converthtob(char n[10]){
+	int i = 0;
+	 while(n[i])
+    {
+        switch(n[i])
+        {
+            case '0':
+                cout<<"0000";
+                break;
+            case '1':
+                cout<<"0001";
+                break;
+            case '2':
+                cout<<"0010";
+                break;
+            case '3':
+                cout<<"0011";
+                break;
+            case '4':
+                cout<<"0100";
+                break;
+            case '5':
+                cout<<"0101";
+                break;
+            case '6':
+                cout<<"0110";
+                break;
+            case '7':
+                cout<<"0111";
+                break;
+            case '8':
+                cout<<"1000";
+                break;
+            case '9':
+                cout<<"1001";
+                break;
+            case 'A':
+            case 'a':
+                cout<<"1010";
+                break;
+            case 'B':
+            case 'b':
+                cout<<"1011";
+                break;
+            case 'C':
+            case 'c':
+                cout<<"1100";
+                break;
+            case 'D':
+            case 'd':
+                cout<<"1101";
+                break;
+            case 'E':
+            case 'e':
+                cout<<"1110";
+                break;
+            case 'F':
+            case 'f':
+                cout<<"1111";
+                break;
+            default:
+        {
+                cout<<"\nInvalid Hexdecimal Digit: ("<<n[i]<<")"<<endl;
+               
+        }
+    }
+        i++;
+    }
+}
+
+long int converthtod(char n[20]){
+	
+    int i, r, len, hex = 0;
+	len = strlen(n);
+    for (i = 0; n[i] != '\0'; i++)
+    {
+        len--;
+        if(n[i] >= '0' && n[i] <= '9')
+            r = n[i] - 48;
+        else if(n[i] >= 'a' && n[i] <= 'f')
+                r = n[i] - 87;
+             else if(n[i] >= 'A' && n[i] <= 'F')
+                    r = n[i] - 55;
+        hex += r * pow(16,len);
+    }
+    cout << hex;
+}
+
+int main(){
+	int ch;
+	long int input_number;
+   	
+	
+	while(1){
+		cout<<"Choose which type of number you want to convert: "<<endl;
+		cout<<"1. Binary\n2. Decimal\n3. Hexadecimal\n4. Exit"<<endl;
+		cin>>ch;
+		
+		switch(ch){
+		
+			case 1:
+				cout<<"Binary to which type?"<<endl;
+				cout<<"1. Decimal\n2.Hexadecimal"<<endl;
+				cin>>ch;
+		
+				switch(ch){
+		
+					case 1:
+						cout<<"Converting Binary into Decimal"<<endl;
+						cout<<"Enter your binaary number: "<<endl;
+						cin>>input_number;
+						convertbtod(input_number);
+						cout<<" :is the Decimal number of your entered binary number."<<endl<<endl;
+					    break;
+					    
+					case 2:
+					    cout<<"Converting Binary into hexadecimal"<<endl;
+						cout<<"Enter your Binary number: "<<endl;
+						cin>>input_number;
+						convertbtoh(input_number);
+						cout<<" :is the Hexadecimal number of your entered binary number."<<endl<<endl;    
+				        break;
+				    default:
+			            cout<<"Invalid choice!, Try again"<<endl<<endl;
+				        			     
+				}
+				break;
+				
+			case 2:
+			     cout<<"Decimal to which type?"<<endl;
+				 cout<<"1. Binary\n2. Hexadeciaml"<<endl;
+				 cin>>ch;
+				 
+				 switch(ch){
+				 	
+				 	case 1:
+				 		cout<<"Converting Decimal into Binary"<<endl;
+				 		cout<<"Enter your Decimal number: "<<endl;
+				 		cin>>input_number;
+				 		convertdtob(input_number);
+				 		cout<<" :is the Binary number of your entered Decimal number."<<endl<<endl;
+				 		break;
+				 		
+				 	case 2:
+				 		cout<<"Converting Decimal into Hexadecimal"<<endl;
+				 		cout<<"Enter your Decimal number: "<<endl;
+				 		cin>>input_number;
+				 		convertdtoh(input_number);
+				 		cout<<" :is the Hexadecimal number of your entered decimal number."<<endl<<endl;
+				 		break;
+				 	default:
+			            cout<<"Invalid choice!, Try again"<<endl<<endl;
+					 	
+				 }
+				 break;
+				 
+			case 3:
+				char Hexa_num[10];	
+				cout<<"Hexadecimal into which type?"<<endl;
+				cout<<"1. Binary\n2. Decimal"<<endl;
+				cin>>ch;
+				
+			      switch(ch){
+			      	
+			      	case 1:
+			      		cout<<"Converting Hexadecimal into Binary"<<endl;
+				 		cout<<"Enter your Hexadecimal number: "<<endl;
+				 		cin>>Hexa_num;
+				 		converthtob(Hexa_num);
+				 		cout<<" :is the Binary number of your entered Hexadecimal number."<<endl<<endl;
+				 		break;
+				 		
+				 	case 2:
+					   	cout<<"Converting Hexadecimal into Decimal"<<endl;
+				 		cout<<"Enter your Hexadecimal number: "<<endl;
+				 		cin>>Hexa_num;
+				 		converthtod(Hexa_num);
+				 		cout<<" :is the Decimal number of your entered Hexadecimal number."<<endl<<endl;
+				 		break;
+				 		
+					default:
+			            cout<<"Invalid choice!, Try again"<<endl<<endl;
+				  }	
+				  break;
+				  
+				  
+			case 4:
+				cout<<"Exiting Program!!!";	
+			    exit(0);
+			       
+			default:
+			        cout<<"Invalid choice!, Try again"<<endl<<endl;	   	   	
+				
+		}
+	}
+	return 0;
+}
